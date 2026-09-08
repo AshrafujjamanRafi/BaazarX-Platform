@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce</title>
+    <link rel="stylesheet" href="Baazar.css">
+</head>
+<body>
+    <!-- Header / Search Interface -->
+    <header id="interface">
+        <img src="BaazarX.jpg" alt="BaazarX Logo">
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search for your product"
+        >
+        <button id="searchButton">
+            Search
+        </button>
+        <button id="cartButton">
+            🛒 Cart
+            <span id="cartCount">0</span>
+        </button>
+    </header>
+    <!-- Categories -->
+    <nav id="categories">
+        <button class="category-btn" data-category="all">
+            All
+        </button>
+        <button class="category-btn" data-category="electronics">
+            Electronics
+        </button>
+        <button class="category-btn" data-category="clothing">
+            Clothing
+        </button>
+        <button class="category-btn" data-category="shoes">
+            Shoes
+        </button>
+        <button class="category-btn" data-category="accessories">
+            Accessories
+        </button>
+    </nav>
+    <!-- Main Content -->
+    <main>
+        <h2>Our Products</h2>
+        <!-- JavaScript will put products here -->
+        <section id="products">
+
+        </section>
+    </main>
+    <!-- Shopping Cart -->
+    <aside id="cart">
+        <h2>Your Cart</h2>
+        <!-- JavaScript will put cart items here -->
+        <div id="cartItems">
+        </div>
+        <div id="cartTotal">
+            Total: ৳<span id="totalPrice">0</span>
+        </div>
+        <button id="checkoutButton">
+            Checkout
+        </button>
+    </aside>
+    <!-- JavaScript -->
+    <script src="sript.js"></script>
+</body>
+</html>
