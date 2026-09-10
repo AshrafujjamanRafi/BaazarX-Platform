@@ -43,6 +43,8 @@ const products=[
     },
 ]
 const productList=document.getElementById("products")
+let count=0;
+const productArray=[]
 function productDisplay(){
      productList.innerHTML=``
      products.forEach(element => {
@@ -66,13 +68,47 @@ function productDisplay(){
         cartButton.textContent="Add to Cart"
         cartButton.dataset.id=element.id
         card.appendChild(cartButton)
-        let count=0;
         cartButton.addEventListener("click",function(){
-            const cartCount=document.getElementById("cartCount")
-        count+=1;
-          cartCount.innerHTML=`${count}`
-})
+            const id=cartButton.dataset.id
+            const singleProduct=products.find(element=>element.id==id)
+            const existingProduct=productArray.find(element=>element.id == id)
+            if(existingProduct){
+                console.log("Already added in cart!")
+            }
+            else{
+            productArray.push(singleProduct)
+            }
+            console.log(productArray)
+            count+=1 
+             const cartCount=document.getElementById("cartCount")
+        cartCount.innerHTML=`${count}`
+        })
     });
 }
+const asideButton=document.getElementById("cartButton")
+ asideButton.addEventListener("click",function(){
+    console.log("cart clicked!")
+    document.getElementById("cart").classList.add("active")
+    const cartItems=document.getElementById("cartItems")
+    let price=0;
+    const totalPrice=document.getElementById("totalPrice")
+    cartItems.innerHTML=""
+    productArray.forEach(element => {
+        const cartItem=document.createElement("div")
+        cartItem.className="cart-item"
+        const productName=document.createElement("div")
+        productName.textContent=element.name
+        const image=document.createElement("img")
+        image.src=element.image
+        const priceItem=document.createElement("p")
+        priceItem.textContent=element.price
+        price+=element.price
+        totalPrice.innerHTML=`${price}`
+        cartItem.appendChild(productName)
+        cartItem.appendChild(image)
+        cartItem.appendChild(priceItem)
+        cartItems.appendChild(cartItem)
+      
+    });
+})
 productDisplay()
-
