@@ -74,11 +74,13 @@ function productDisplay(){
             const existingProduct=productArray.find(element=>element.id == id)
             if(existingProduct){
                 console.log("Already added in cart!")
+                existingProduct.quantity+=1
             }
             else{
-            productArray.push(singleProduct)
+            const cartProduct={...singleProduct,quantity:1}
+            productArray.push(cartProduct)
+            console.log(cartProduct);
             }
-            console.log(productArray)
             count+=1 
              const cartCount=document.getElementById("cartCount")
         cartCount.innerHTML=`${count}`
@@ -101,14 +103,13 @@ const asideButton=document.getElementById("cartButton")
         const image=document.createElement("img")
         image.src=element.image
         const priceItem=document.createElement("p")
-        priceItem.textContent=element.price
-        price+=element.price
-        totalPrice.innerHTML=`${price}`
+        priceItem.innerHTML = "Price: " + element.price + "<br>Quantity: " + element.quantity
+        price+=element.price * element.quantity
         cartItem.appendChild(productName)
         cartItem.appendChild(image)
         cartItem.appendChild(priceItem)
         cartItems.appendChild(cartItem)
-      
     });
+     totalPrice.innerHTML=`${price}`
 })
 productDisplay()
