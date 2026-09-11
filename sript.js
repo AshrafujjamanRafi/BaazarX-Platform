@@ -87,14 +87,18 @@ function productDisplay(){
         })
     });
 }
-const asideButton=document.getElementById("cartButton")
- asideButton.addEventListener("click",function(){
-    console.log("cart clicked!")
-    document.getElementById("cart").classList.add("active")
-    const cartItems=document.getElementById("cartItems")
+function displayCart(){
+     const cartItems=document.getElementById("cartItems")
     let price=0;
     const totalPrice=document.getElementById("totalPrice")
     cartItems.innerHTML=""
+    const home=document.createElement("button")
+    home.textContent="HOME"
+    home.className="home-btn"
+    home.addEventListener("click",function(){
+             document.getElementById("cart").classList.remove("active")
+        })
+        cartItems.appendChild(home)
     productArray.forEach(element => {
         const cartItem=document.createElement("div")
         cartItem.className="cart-item"
@@ -105,11 +109,34 @@ const asideButton=document.getElementById("cartButton")
         const priceItem=document.createElement("p")
         priceItem.innerHTML = "Price: " + element.price + "<br>Quantity: " + element.quantity
         price+=element.price * element.quantity
+        const removeButton=document.createElement("button")
+        removeButton.textContent="Remove"
+        removeButton.className="remove-btn"
         cartItem.appendChild(productName)
         cartItem.appendChild(image)
         cartItem.appendChild(priceItem)
+          cartItem.appendChild(removeButton)
         cartItems.appendChild(cartItem)
+        cartItems.appendChild(home)
+        home.addEventListener("click",function(){
+             document.getElementById("cart").classList.remove("active")
+        })
+        removeButton.addEventListener("click",function(){
+            const id=element.id
+            const index=productArray.findIndex(element=>element.id==id)
+            count-=element.quantity
+            productArray.splice(index,1)
+            const cartCount=document.getElementById("cartCount")
+        cartCount.innerHTML=`${count}`
+            displayCart()
+        })
     });
      totalPrice.innerHTML=`${price}`
+}
+const asideButton=document.getElementById("cartButton")
+ asideButton.addEventListener("click",function(){
+    console.log("cart clicked!")
+    document.getElementById("cart").classList.add("active")
+   displayCart()
 })
 productDisplay()
