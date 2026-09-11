@@ -45,9 +45,9 @@ const products=[
 const productList=document.getElementById("products")
 let count=0;
 const productArray=[]
-function productDisplay(){
+function productDisplay(temp){
      productList.innerHTML=``
-     products.forEach(element => {
+     temp.forEach(element => {
         const card=document.createElement("div")
         card.className="product-card"
         productList.appendChild(card)
@@ -62,7 +62,6 @@ function productDisplay(){
         card.appendChild(productPrice)
          const productCategory=document.createElement("p")
         productCategory.textContent=element.category
-        card.appendChild(productCategory)
         const cartButton=document.createElement("button")
         cartButton.className="add-cart"
         cartButton.textContent="Add to Cart"
@@ -112,14 +111,37 @@ function displayCart(){
         const removeButton=document.createElement("button")
         removeButton.textContent="Remove"
         removeButton.className="remove-btn"
+         const addButton=document.createElement("button")
+        addButton.textContent="+"
+        addButton.className="plus-btn"
+        const minusButton=document.createElement("button")
+        minusButton.textContent="-"
+        minusButton.className="minus-btn"
         cartItem.appendChild(productName)
         cartItem.appendChild(image)
         cartItem.appendChild(priceItem)
+        cartItem.appendChild(addButton)
+        cartItem.appendChild(minusButton)
           cartItem.appendChild(removeButton)
         cartItems.appendChild(cartItem)
-        cartItems.appendChild(home)
-        home.addEventListener("click",function(){
-             document.getElementById("cart").classList.remove("active")
+        addButton.addEventListener("click",function(){
+            element.quantity+=1
+            count+=1
+            const cartCount=document.getElementById("cartCount")
+            cartCount.innerHTML=`${count}`
+            displayCart()
+        })
+        minusButton.addEventListener("click",function(){
+            if(element.quantity>1){
+            element.quantity-=1
+            count-=1
+            const cartCount=document.getElementById("cartCount")
+            cartCount.innerHTML=`${count}`
+            displayCart()
+            }
+            else{
+                alert("Quantity can't be less than 1")
+            }
         })
         removeButton.addEventListener("click",function(){
             const id=element.id
@@ -139,4 +161,38 @@ const asideButton=document.getElementById("cartButton")
     document.getElementById("cart").classList.add("active")
    displayCart()
 })
-productDisplay()
+const takeInput=document.getElementById("searchInput")
+const search=document.getElementById("searchButton")
+function searchShow(){
+         const userInput=takeInput.value.toLowerCase() 
+    const result=products.filter(element=>element.name.toLowerCase().includes(userInput))
+    if(result.length=== 0){
+        alert("No matching product found!!")
+    }
+    else{
+    productDisplay(result)
+    }
+}
+search.addEventListener("click",function(){
+        searchShow()
+})
+takeInput.addEventListener("keydown",function(event){
+    if(event.key=="Enter"){
+        searchShow()
+    }
+})
+const categoryButton=document.querySelectorAll(".category-btn")
+categoryButton.forEach(element=>{
+    element.addEventListener("click",function(){
+        const category=element.dataset.category
+        const result=products.filter(product=>product.category === category)
+        console.log(result)
+        if(category==="all"){
+            productDisplay(products);
+        }
+        else{
+            productDisplay(result)
+        }
+    })
+})
+productDisplay(products)
