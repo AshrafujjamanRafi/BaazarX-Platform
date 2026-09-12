@@ -44,7 +44,12 @@ const products=[
 ]
 const productList=document.getElementById("products")
 let count=0;
-const productArray=[]
+const savedCart=JSON.parse(localStorage.getItem("cart"))
+const productArray = savedCart ? savedCart : []
+productArray.forEach(element => {
+     count+=element.quantity
+});
+cartCount.innerHTML=`${count}`
 function productDisplay(temp){
      productList.innerHTML=``
      temp.forEach(element => {
@@ -72,15 +77,14 @@ function productDisplay(temp){
             const singleProduct=products.find(element=>element.id==id)
             const existingProduct=productArray.find(element=>element.id == id)
             if(existingProduct){
-                console.log("Already added in cart!")
                 existingProduct.quantity+=1
             }
             else{
             const cartProduct={...singleProduct,quantity:1}
             productArray.push(cartProduct)
-            console.log(cartProduct);
             }
             count+=1 
+            localStorage.setItem("cart",JSON.stringify(productArray))
              const cartCount=document.getElementById("cartCount")
         cartCount.innerHTML=`${count}`
         })
@@ -98,7 +102,7 @@ function displayCart(){
              document.getElementById("cart").classList.remove("active")
         })
         cartItems.appendChild(home)
-    productArray.forEach(element => {
+        productArray.forEach(element => {
         const cartItem=document.createElement("div")
         cartItem.className="cart-item"
         const productName=document.createElement("div")
@@ -153,11 +157,11 @@ function displayCart(){
             displayCart()
         })
     });
+     localStorage.setItem("cart",JSON.stringify(productArray))
      totalPrice.innerHTML=`${price}`
 }
 const asideButton=document.getElementById("cartButton")
  asideButton.addEventListener("click",function(){
-    console.log("cart clicked!")
     document.getElementById("cart").classList.add("active")
    displayCart()
 })
@@ -182,17 +186,16 @@ takeInput.addEventListener("keydown",function(event){
     }
 })
 const categoryButton=document.querySelectorAll(".category-btn")
-categoryButton.forEach(element=>{
-    element.addEventListener("click",function(){
-        const category=element.dataset.category
-        const result=products.filter(product=>product.category === category)
-        console.log(result)
-        if(category==="all"){
-            productDisplay(products);
-        }
-        else{
-            productDisplay(result)
-        }
-    })
+categoryButton.forEach(element => {
+      element.addEventListener("click",function(){
+      const category=element.dataset.category
+      const result=products.filter(product=>product.category===category)
+      if(category==="all"){
+        productDisplay(products)
+      }
+      else{
+        productDisplay(result)
+      }
 })
+});
 productDisplay(products)

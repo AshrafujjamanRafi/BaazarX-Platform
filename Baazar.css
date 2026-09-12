@@ -1,4 +1,4 @@
-```css
+
 *{
     margin:0;
     padding:0;
@@ -33,10 +33,11 @@ body{
 }
 
 #interface img{
-    width:130px;
-    height:52px;
+    width:180px;
+    height:60px;
     object-fit:contain;
 }
+
 
 #searchInput{
     flex:1;
@@ -480,14 +481,12 @@ main h2::after{
 /* ================= RESPONSIVE ================= */
 
 @media(max-width:800px){
-
+     #interface img{
+        width:145px;
+    }
     #interface{
         flex-wrap:wrap;
         padding:12px 4%;
-    }
-
-    #interface img{
-        width:110px;
     }
 
     #searchInput{
@@ -520,7 +519,7 @@ main h2::after{
 @media(max-width:520px){
 
     #interface img{
-        width:90px;
+        width:120px;
     }
 
     #searchButton{
@@ -562,4 +561,4 @@ main h2::after{
         right:0;
     }
 }
-```
+
