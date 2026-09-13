@@ -49,6 +49,7 @@ const productArray = savedCart ? savedCart : []
 productArray.forEach(element => {
      count+=element.quantity
 });
+const cartCount=document.getElementById("cartCount")
 cartCount.innerHTML=`${count}`
 function productDisplay(temp){
      productList.innerHTML=``
@@ -198,4 +199,12 @@ categoryButton.forEach(element => {
       }
 })
 });
+const checkoutButton=document.getElementById("checkoutButton")
+checkoutButton.addEventListener("click",function(){
+    productArray.splice(0,productArray.length)
+    localStorage.removeItem("cart")
+    count=0;
+    cartCount.innerHTML=`${count}`
+    document.getElementById("cart").classList.remove("active")
+})
 productDisplay(products)
