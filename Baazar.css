@@ -872,3 +872,9 @@ main h2::after {
         padding: 22px 15px;
     }
 }
+button {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    user-select: none;
+    -webkit-user-select: none;
+}
