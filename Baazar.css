@@ -872,9 +872,10 @@ main h2::after {
         padding: 22px 15px;
     }
 }
-button {
+.product-card {
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
-    user-select: none;
-    -webkit-user-select: none;
+}
+.product-card:active {
+    background: linear-gradient(145deg, #11162a, #0d1121);
 }
