@@ -879,3 +879,7 @@ main h2::after {
 .product-card:active {
     background: linear-gradient(145deg, #11162a, #0d1121);
 }
+.minus-btn:disabled{
+    opacity: 0.4;
+    cursor: not-allowed;
+}

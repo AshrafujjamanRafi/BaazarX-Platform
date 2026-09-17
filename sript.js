@@ -46,7 +46,31 @@ const products=[
         category:"accessories",
         image:"watch.jpg",
          Description:"A stylish watch for everyday use"
-    }
+    },
+     {
+        id:7,
+        name:"Water Bottle",
+        price:500,
+        category:"accessories",
+        image:"bottle.jpg",
+        Description:"A stylish bottle for everyday use"
+    },
+    {
+        id:8,
+        name:"Sunglass",
+        price:1500,
+        category:"accessories",
+        image:"sunglasses.jpg",
+        Description:"A stylish sunglass for everyday use"
+    },
+    {
+        id:9,
+        name:"Ladies Bag",
+        price:2500,
+        category:"accessories",
+        image:"ladies.jpg",
+        Description:"A stylish bag for everyday use"
+    },
 ]
 const productList=document.getElementById("products")
 let count=0;
@@ -160,7 +184,7 @@ function displayCart(){
             displayCart()
             }
             else{
-                alert("Quantity can't be less than 1")
+               minusButton.disabled=true;
             }
         })
         removeButton.addEventListener("click",function(){
