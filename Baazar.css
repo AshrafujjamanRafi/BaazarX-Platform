@@ -10,7 +10,10 @@ html {
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #080b18;
+    background:
+        radial-gradient(circle at 10% 5%, rgba(124, 58, 237, 0.16), transparent 28%),
+        radial-gradient(circle at 90% 15%, rgba(6, 182, 212, 0.12), transparent 28%),
+        #080b18;
     color: #f8fafc;
     min-height: 100vh;
     overflow-x: hidden;
@@ -23,10 +26,6 @@ input {
 
 button {
     -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
 }
 
 #interface {
@@ -36,8 +35,10 @@ button {
     display: flex;
     align-items: center;
     gap: 14px;
-    background: #080b18;
+    background: rgba(8, 11, 24, 0.92);
     border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+    /*backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);*/
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -62,6 +63,7 @@ button {
     background: #11162a;
     color: #f8fafc;
     font-size: 15px;
+    transition: 0.25s ease;
 }
 
 #searchInput::placeholder {
@@ -70,6 +72,7 @@ button {
 
 #searchInput:focus {
     border-color: #8b5cf6;
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
 }
 
 #searchButton,
@@ -78,6 +81,7 @@ button {
     height: 45px;
     border-radius: 12px;
     cursor: pointer;
+    transition: 0.25s ease;
     white-space: nowrap;
 }
 
@@ -88,6 +92,21 @@ button {
     color: white;
     font-size: 14px;
     font-weight: 700;
+    box-shadow: 0 7px 20px rgba(99, 102, 241, 0.2);
+}
+
+#searchButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+}
+
+#searchButton:active,
+#interface-home:active,
+#cartButton:active,
+.add-cart:active,
+#checkoutButton:active,
+#detailsCartButton:active {
+    transform: scale(0.97);
 }
 
 #interface-home {
@@ -99,6 +118,13 @@ button {
     font-weight: 700;
 }
 
+#interface-home:hover {
+    border-color: #8b5cf6;
+    background: #171d35;
+    box-shadow: 0 7px 20px rgba(139, 92, 246, 0.15);
+    transform: translateY(-2px);
+}
+
 #cartButton {
     padding: 0 17px;
     border: 1px solid #303750;
@@ -108,29 +134,11 @@ button {
     font-weight: 700;
 }
 
-#searchButton:active,
-#interface-home:active,
-#cartButton:active,
-.add-cart:active,
-#checkoutButton:active,
-#detailsCartButton:active {
-    transform: scale(0.98);
-}
-
-#searchButton:hover,
-#interface-home:hover,
-#cartButton:hover {
-    transform: translateY(-2px);
-}
-
-#interface-home:hover {
-    border-color: #8b5cf6;
-    background: #171d35;
-}
-
 #cartButton:hover {
     border-color: #06b6d4;
     background: #141b30;
+    box-shadow: 0 7px 20px rgba(6, 182, 212, 0.12);
+    transform: translateY(-2px);
 }
 
 #cartCount {
@@ -155,8 +163,10 @@ button {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    background: #0b0f20;
+    background: rgba(11, 15, 32, 0.94);
     border-bottom: 1px solid rgba(139, 92, 246, 0.16);
+   /* backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);*/
     position: sticky;
     top: 78px;
     z-index: 900;
@@ -171,6 +181,7 @@ button {
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
+    transition: 0.25s ease;
     white-space: nowrap;
 }
 
@@ -218,30 +229,31 @@ main h2::after {
     border: 1px solid #252c47;
     border-radius: 18px;
     background: linear-gradient(145deg, #11162a, #0d1121);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
     cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-    transition: transform 0.2s ease, border-color 0.2s ease;
+   transition: transform 0.25s ease, border-color 0.25s ease;
 }
 
 .product-card::before {
     content: "";
     position: absolute;
-    width: 120px;
-    height: 120px;
-    top: -70px;
-    right: -60px;
+    width: 150px;
+    height: 150px;
+    top: -90px;
+    right: -80px;
     border-radius: 50%;
     background: #8b5cf6;
-    opacity: 0.05;
-    filter: blur(15px);
+    opacity: 0.07;
+    filter: blur(25px);
     pointer-events: none;
 }
 
 .product-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-7px);
     border-color: rgba(139, 92, 246, 0.7);
+    box-shadow:
+        0 16px 35px rgba(0, 0, 0, 0.35),
+        0 0 25px rgba(139, 92, 246, 0.1);
 }
 
 .product-card img {
@@ -251,6 +263,11 @@ main h2::after {
     object-fit: cover;
     border-radius: 13px;
     background: #080b18;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.025);
 }
 
 .product-card p {
@@ -294,10 +311,13 @@ main h2::after {
     font-size: 14px;
     font-weight: 700;
     cursor: pointer;
+    box-shadow: 0 6px 15px rgba(99, 102, 241, 0.18);
+    transition: 0.25s ease;
 }
 
 .add-cart:hover {
     transform: translateY(-2px);
+    box-shadow: 0 9px 22px rgba(6, 182, 212, 0.2);
 }
 
 #cart {
@@ -308,11 +328,13 @@ main h2::after {
     height: 100vh;
     padding: 25px;
     overflow-y: auto;
-    background: #0b1020;
+    background:
+        radial-gradient(circle at 90% 5%, rgba(139, 92, 246, 0.12), transparent 28%),
+        #0b1020;
     border-left: 1px solid rgba(139, 92, 246, 0.25);
-    box-shadow: -8px 0 25px rgba(0, 0, 0, 0.35);
+    box-shadow: -15px 0 45px rgba(0, 0, 0, 0.5);
     z-index: 2000;
-    transition: right 0.3s ease;
+    transition: right 0.35s ease;
 }
 
 #cart.active {
@@ -343,6 +365,7 @@ main h2::after {
     font-size: 13px;
     font-weight: 700;
     cursor: pointer;
+    transition: 0.25s ease;
 }
 
 .home-btn:hover {
@@ -398,6 +421,14 @@ main h2::after {
     font-size: 17px;
     font-weight: 700;
     cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.plus-btn:hover,
+.minus-btn:hover {
+    border-color: #06b6d4;
+    color: #22d3ee;
+    background: #151b30;
 }
 
 .plus-btn {
@@ -423,6 +454,12 @@ main h2::after {
     font-size: 12px;
     font-weight: 700;
     cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.remove-btn:hover {
+    background: rgba(236, 72, 153, 0.13);
+    border-color: rgba(236, 72, 153, 0.45);
 }
 
 #cartTotal {
@@ -451,6 +488,13 @@ main h2::after {
     font-size: 15px;
     font-weight: 800;
     cursor: pointer;
+    box-shadow: 0 7px 20px rgba(139, 92, 246, 0.2);
+    transition: 0.25s ease;
+}
+
+#checkoutButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(236, 72, 153, 0.25);
 }
 
 #cart::-webkit-scrollbar {
@@ -466,6 +510,10 @@ main h2::after {
     border-radius: 10px;
 }
 
+#cart::-webkit-scrollbar-thumb:hover {
+    background: #555f86;
+}
+
 #productDisplay {
     display: none;
     position: fixed;
@@ -473,7 +521,9 @@ main h2::after {
     align-items: center;
     justify-content: center;
     padding: 20px;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.76);
+    /*backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);*/
     z-index: 3000;
 }
 
@@ -485,9 +535,11 @@ main h2::after {
     overflow-y: auto;
     border: 1px solid #303750;
     border-radius: 20px;
-    background: #0d1122;
+    background:
+        radial-gradient(circle at 90% 5%, rgba(139, 92, 246, 0.1), transparent 30%),
+        #0d1122;
     text-align: center;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
 }
 
 #detailsImage {
@@ -543,6 +595,7 @@ main h2::after {
     color: #f8fafc;
     font-size: 15px;
     cursor: pointer;
+    transition: 0.2s ease;
 }
 
 #closeDetails:hover {
@@ -562,32 +615,12 @@ main h2::after {
     font-size: 14px;
     font-weight: 800;
     cursor: pointer;
+    transition: 0.25s ease;
 }
 
 #detailsCartButton:hover {
     transform: translateY(-2px);
-}
-
-@media (hover: none) {
-    .product-card:hover,
-    .product-card:hover img,
-    .category-btn:hover,
-    #searchButton:hover,
-    #interface-home:hover,
-    #cartButton:hover,
-    .add-cart:hover,
-    #checkoutButton:hover,
-    #detailsCartButton:hover {
-        transform: none;
-    }
-
-    .product-card:hover {
-        border-color: #252c47;
-    }
-
-    .product-card img {
-        transform: none;
-    }
+    box-shadow: 0 9px 22px rgba(99, 102, 241, 0.22);
 }
 
 @media (max-width: 1000px) {
@@ -838,4 +871,11 @@ main h2::after {
     #productDetails {
         padding: 22px 15px;
     }
+}
+.product-card {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+}
+.product-card:active {
+    background: linear-gradient(145deg, #11162a, #0d1121);
 }
