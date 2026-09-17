@@ -43,7 +43,7 @@ const products=[
         id:6,
         name:"Rolex Watch",
         price:3999,
-        category:"clothing",
+        category:"accessories",
         image:"watch.jpg",
          Description:"A stylish watch for everyday use"
     }
