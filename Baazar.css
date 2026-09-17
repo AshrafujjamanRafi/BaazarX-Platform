@@ -883,3 +883,17 @@ main h2::after {
     opacity: 0.4;
     cursor: not-allowed;
 }
+footer{
+    text-align:center;
+    padding:30px 20px;
+    margin-top:50px;
+    color:#8b93ad;
+    font-size:14px;
+    border-top:1px solid #252c47;
+}
+
+footer p{
+    margin:8px 0;
+    letter-spacing:0.5px;
+    word-spacing:2px;
+}
